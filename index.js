@@ -11,20 +11,23 @@ class CountdownTimer {
     this.timer();
   }
 
+  timeDiff() {
+    let currentDate = Date.now();
+    let time = this.targetDate - currentDate;
+    const days = Math.floor(time / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+    const secs = Math.floor((time % (1000 * 60)) / 1000);
+    day.textContent = days;
+    hour.textContent = hours;
+    minute.textContent = mins;
+    second.textContent = secs;
+  }
+
   timer() {
+    this.timeDiff();
     this.intervalId = setInterval(() => {
-      let currentDate = Date.now();
-      let time = this.targetDate - currentDate;
-      const days = Math.floor(time / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-      const secs = Math.floor((time % (1000 * 60)) / 1000);
-      day.textContent = days;
-      hour.textContent = hours;
-      minute.textContent = mins;
-      second.textContent = secs;
+      this.timeDiff();
     }, 1000);
   }
 }
